@@ -27,7 +27,7 @@ public class ItemController {
         return service.findAllItems();
     }
 
-    @PutMapping
+    @PutMapping("/{itemId}")
     public Item modifyItem(@RequestBody Item item){
         return service.updateItem(item);
     }
