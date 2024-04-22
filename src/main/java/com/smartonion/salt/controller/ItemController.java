@@ -1,7 +1,6 @@
 package com.smartonion.salt.controller;
 
 import com.smartonion.salt.model.Item;
-import com.smartonion.salt.model.Task;
 import com.smartonion.salt.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +26,7 @@ public class ItemController {
         return service.findAllItems();
     }
 
-    @PutMapping("/{itemId}")
+    @PutMapping
     public Item modifyItem(@RequestBody Item item){
         return service.updateItem(item);
     }

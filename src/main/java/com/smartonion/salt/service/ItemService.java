@@ -33,6 +33,7 @@ public class ItemService {
         Item existingItem = repository.findById(itemReqeust.getItemId()).get();
         existingItem.setName(itemReqeust.getName());
         existingItem.setType(itemReqeust.getType());
+        existingItem.setQuantity(itemReqeust.getQuantity());
 
         return repository.save(existingItem);
 
