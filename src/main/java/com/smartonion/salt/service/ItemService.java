@@ -3,6 +3,9 @@ package com.smartonion.salt.service;
 
 import com.smartonion.salt.model.Item;
 import com.smartonion.salt.repository.ItemRepository;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Tag(name = "Item Controller", description = "Handling of Item data")
 public class ItemService {
 
     @Autowired
@@ -28,6 +32,10 @@ public class ItemService {
     public Item getItemByItemId(String itemId){
         return repository.findById(itemId).get();
     }
+
+    // public List<Item> getItemByStock(){
+    //     return repository.findByStock();
+    // }
 
     public Item updateItem(Item itemReqeust){
         Item existingItem = repository.findById(itemReqeust.getItemId()).get();
