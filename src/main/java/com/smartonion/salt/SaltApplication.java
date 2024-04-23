@@ -17,4 +17,4 @@ public class SaltApplication {
 
 
 // Install swagger
-//Move to docker
+//Move to Dockerfile
