@@ -11,10 +11,12 @@ import nonapi.io.github.classgraph.json.Id;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Profile {
 
     @Id
     private String profileId;
+
     private String name;
     private FoodPreference foodPreference;
     private Allergies allergies;
