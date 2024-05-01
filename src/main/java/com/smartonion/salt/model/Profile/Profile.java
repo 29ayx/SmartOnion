@@ -1,25 +1,30 @@
-package com.smartonion.salt.model;
+package com.smartonion.salt.model.Profile;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.sql.Date;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+
 
 @Document(collection = "items")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Item {
+public class Profile {
 
     @Id
-    private String itemId;
+    private int id;
+    private String picture;
     private String name;
-    private String type;  // Changed from enum to String
-    private float quantity;
-    private String unit;  // Changed from enum to String
-    private Date expiryDate;
-    private boolean inStock;
+    private Date dob;
+    private FoodPreference preferenceType;
+    private DietaryRestriction restriction;
+    private Allergies allergies;
+
 }
