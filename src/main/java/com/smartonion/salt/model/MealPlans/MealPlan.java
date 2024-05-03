@@ -1,4 +1,4 @@
-package com.smartonion.salt.model;
+package com.smartonion.salt.model.MealPlans;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
