@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Document(collection = "items")
 @Data
@@ -20,6 +20,8 @@ public class Item {
     private String type;  // Changed from enum to String
     private float quantity;
     private String unit;  // Changed from enum to String
-    private Date expiryDate;
+//    private Date expiryDate;
     private boolean inStock;
+    private String familyId;
+
 }

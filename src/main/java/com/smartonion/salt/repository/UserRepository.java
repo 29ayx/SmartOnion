@@ -1,8 +1,15 @@
 package com.smartonion.salt.repository;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import com.smartonion.salt.model.AdminUser;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface UserRepository extends MongoRepository<User, String>{
-    
+import java.util.Optional;
+
+public interface UserRepository extends MongoRepository<AdminUser, String>{
+
+//    AdminUser findByEmail(String email);
+    Optional<AdminUser> findByEmail(String email);
+
+
+    void deleteByEmail(String id);
 }

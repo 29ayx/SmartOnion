@@ -1,8 +1,14 @@
 package com.smartonion.salt.model.Inventory;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "vegetables")
-public class Vegetable extends FoodItem {
-    private String color;  // Main color of the vegetable
+public class Vegetable extends InventoryItem {
+    private String color; // Additional attribute specific to vegetables
 }

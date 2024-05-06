@@ -11,32 +11,35 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class FamilyInventroyService  {
+public class FamilyInventoryService {
 
     @Autowired
     private FamilyInventoryRepository familyInventoryRepository;
 
-    public FamilyInventory addItemToFamily(String familyId, String itemId, float quantity, Date expiryDate, boolean inStock) {
-        // Optional: Validate the item exists in the items catalog
+    public FamilyInventory addItemToFamily(String familyId, String itemId, float quantity, boolean inStock) {
+        // First, check if the item already exists in the family's inventory
+        List<FamilyInventory> existingItems = familyInventoryRepository.findByFamilyId(familyId);
+        FamilyInventory existingItem = existingItems.stream()
+                .filter(item -> itemId.equals(item.getItemId()))
+                .findFirst()
+                .orElse(null);
 
-        // Check if the item is already in the family's inventory
-        List<FamilyInventory> existingItems = familyInventoryRepository.findByFamilyId(familyId)
-                .stream()
-                .filter(item -> item.getItemId().equals(itemId))
-                .collect(Collectors.toList());
-
-        if (!existingItems.isEmpty()) {
-            FamilyInventory existingItem = existingItems.get(0);
+        if (existingItem != null) {
+            // If the item exists, update quantity or other fields
             existingItem.setQuantity(existingItem.getQuantity() + quantity);
+            existingItem.setInStock(inStock);
+//            existingItem.setExpiryDate(expiryDate);
             return familyInventoryRepository.save(existingItem);
         } else {
+            // If not, create a new inventory item
             FamilyInventory newItem = new FamilyInventory();
             newItem.setFamilyId(familyId);
-            newItem.setItemId(itemId);
+            newItem.setItemId(itemId);  // Ensure itemId is set here
             newItem.setQuantity(quantity);
-            newItem.setExpiryDate(expiryDate);
+//            newItem.setExpiryDate(expiryDate);
             newItem.setInStock(inStock);
             return familyInventoryRepository.save(newItem);
         }
     }
+
 }
