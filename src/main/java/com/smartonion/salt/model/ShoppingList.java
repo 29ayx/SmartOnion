@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.sql.Date;
 import java.util.List;
 
-@Document(collection = "tasks")
+@Document(collection = "shoppinglist")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +17,7 @@ import java.util.List;
 public class ShoppingList {
 
     @Id
-    private String taskId;
+    private String shoppingListId;
     private String description;
     private Date shoppingDate;
     private List<ShoppingItem> shoppingItems;

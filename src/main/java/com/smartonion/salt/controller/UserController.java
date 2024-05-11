@@ -1,6 +1,7 @@
 package com.smartonion.salt.controller;
+
 import com.smartonion.salt.model.inventory.UserInventory;
-import com.smartonion.salt.model.Task;
+import com.smartonion.salt.model.ShoppingList;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 
@@ -49,8 +50,6 @@ public class UserController {
         service.deleteUserByEmail(id);
     }
 
-
-
     @GetMapping("/{email}")
     public AdminUser getUser(@PathVariable String email){
         return service.findAdminUserByEmail(email);
@@ -94,5 +93,32 @@ public class UserController {
         }
     }
 
+    @GetMapping("/{email}/shoppinglist")
+    public ResponseEntity<?> getAllShoppingList(@PathVariable String email) {
+        try {
+            List<ShoppingList> shoppingList = service.getAllShoppingList(email);
+            return ResponseEntity.ok(shoppingList);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        }
+    }
 
+    @GetMapping("/{email}/shoppinglist/{shoppingListId}")
+    public ResponseEntity<?> getShoppingListForUser(@PathVariable String email, @PathVariable String shoppingListId) {
+        try {
+            AdminUser user = service.findAdminUserByEmail(email);
+            if (user == null) {
+                return ResponseEntity.notFound().build();
+            }
+            for (ShoppingList shoppingList : user.getShoppingList()) {
+                String listId = shoppingList.getShoppingListId();
+                if (listId != null && listId.equals(shoppingListId)) {
+                    return ResponseEntity.ok(shoppingList);
+                }
+            }
+            return ResponseEntity.notFound().build();
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+    }
 }

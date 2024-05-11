@@ -4,6 +4,7 @@ package com.smartonion.salt.service;
 import java.util.List;
 import java.util.UUID;
 
+import com.smartonion.salt.model.ShoppingList;
 import com.smartonion.salt.model.inventory.*;
 import com.smartonion.salt.model.inventory.UserInventory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,12 @@ public class UserService {
         AdminUser user = repository.findByEmail(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         return user.getInventoryItems();  // Return the list of inventory items
+    }
+
+    public List<ShoppingList> getAllShoppingList(String userId) {
+        AdminUser user = repository.findByEmail(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return user.getShoppingList();  // Return the list of inventory items
     }
 
     public AdminUser addInventoryItemToUser(String userEmail, UserInventory item) {
