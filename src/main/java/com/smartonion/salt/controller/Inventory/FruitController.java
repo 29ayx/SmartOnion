@@ -1,6 +1,6 @@
 package com.smartonion.salt.controller.Inventory;
 
-        import com.smartonion.salt.model.Inventory.Fruit;
+        import com.smartonion.salt.model.inventory.Fruit;
         import com.smartonion.salt.service.Inventory.FruitService;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.http.HttpStatus;
@@ -10,7 +10,7 @@ package com.smartonion.salt.controller.Inventory;
         import java.util.List;
 
 @RestController
-@RequestMapping("inventory/fruits")
+@RequestMapping("/inventory/fruits")
 public class FruitController {
 
     @Autowired

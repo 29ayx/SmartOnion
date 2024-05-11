@@ -1,4 +1,6 @@
-package com.smartonion.salt.model.Inventory;
+package com.smartonion.salt.model.inventory;
+
+import com.smartonion.salt.model.inventory.InventoryItem;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;

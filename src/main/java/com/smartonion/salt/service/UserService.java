@@ -4,7 +4,8 @@ package com.smartonion.salt.service;
 import java.util.List;
 import java.util.UUID;
 
-import com.smartonion.salt.model.Inventory.*;
+import com.smartonion.salt.model.inventory.*;
+import com.smartonion.salt.model.inventory.UserInventory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.smartonion.salt.model.AdminUser;

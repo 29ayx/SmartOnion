@@ -1,6 +1,6 @@
 package com.smartonion.salt.controller.Inventory;
 
-import com.smartonion.salt.model.Inventory.Other;
+import com.smartonion.salt.model.inventory.Other;
 import com.smartonion.salt.service.Inventory.OtherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

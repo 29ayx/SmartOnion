@@ -1,6 +1,6 @@
 package com.smartonion.salt.service.Inventory;
 
-import com.smartonion.salt.model.Inventory.Other;
+import com.smartonion.salt.model.inventory.Other;
 import com.smartonion.salt.repository.Inventory.OtherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.smartonion.salt.model.Inventory;
+package com.smartonion.salt.model.inventory;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
