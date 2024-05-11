@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.sql.Date;
+import java.util.List;
+
 @Document(collection = "tasks")
 @Data
 @AllArgsConstructor
@@ -16,8 +19,9 @@ public class Task {
     @Id
     private String taskId;
     private String description;
-    private int severity;
-    private String assigned;
-    private int storyPoint;
+    private Date shoppingDate;
+    
+
 
 }
+
