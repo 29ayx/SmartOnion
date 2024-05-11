@@ -10,7 +10,7 @@ package com.smartonion.salt.controller.Inventory;
         import java.util.List;
 
 @RestController
-@RequestMapping("inventory/fruits")
+@RequestMapping("/inventory/fruits")
 public class FruitController {
 
     @Autowired

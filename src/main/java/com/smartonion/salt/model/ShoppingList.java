@@ -14,13 +14,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Task {
+public class ShoppingList {
 
     @Id
     private String taskId;
     private String description;
     private Date shoppingDate;
-    
+    private List<ShoppingItem> shoppingItems;
 
 
 }

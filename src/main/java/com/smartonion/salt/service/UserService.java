@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.smartonion.salt.model.Inventory.*;
+import com.smartonion.salt.model.ShoppingList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.smartonion.salt.model.AdminUser;
@@ -46,12 +47,35 @@ public class UserService {
         return user.getInventoryItems();  // Return the list of inventory items
     }
 
+    public List<ShoppingList> getAllShoppingList(String userId) {
+        AdminUser user = repository.findByEmail(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return user.getShoppingList();  // Return the list of inventory items
+    }
+
+
+    //BACH
+//    public ShoppingList getShoppingListById(String userId) {
+//        AdminUser user = repository.findByEmail(userId)
+//                .orElseThrow(() -> new RuntimeException("User not found"));
+//        return user.getShoppingListById();  // Return the list of inventory items
+//    }
+
     public AdminUser addInventoryItemToUser(String userEmail, UserInventory item) {
         AdminUser user = repository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("User not found")); // Now properly functional
 
         item.setAdminUser(user); // Assuming UserInventory has a back-reference to AdminUser
         user.getInventoryItems().add(item);
+        return repository.save(user); // Saves the updated user with the new inventory item
+    }
+
+
+    public AdminUser addShoppingListToUser(String userEmail, ShoppingList list) {
+        AdminUser user = repository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("User not found")); // Now properly functional
+
+        user.getShoppingList().add(list); // Assuming UserInventory has a back-reference to AdminUser
         return repository.save(user); // Saves the updated user with the new inventory item
     }
 

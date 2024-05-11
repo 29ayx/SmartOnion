@@ -21,9 +21,9 @@ import java.util.Map;
 @Document(collection = "user_inventory")
 public class UserInventory extends InventoryItem {
     private boolean crucial;
+    private String type;
     @DBRef
     @JsonIgnore
     private AdminUser adminUser;  // Link to the admin user
-    private Map<String, Object> attributes; // For dynamic attributes
 
 }

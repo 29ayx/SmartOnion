@@ -1,6 +1,6 @@
 package com.smartonion.salt.controller;
 import com.smartonion.salt.model.Inventory.UserInventory;
-import com.smartonion.salt.model.Task;
+import com.smartonion.salt.model.ShoppingList;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
 
@@ -72,15 +72,36 @@ public class UserController {
 
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
+
+    //Add item to user's inventory
     @PostMapping("/{email}/inventoryItems")
     public ResponseEntity<?> addInventoryItemToUser(@PathVariable String email, @RequestBody UserInventory item) {
+
+        //Add item to the user's inventory
         try {
             log.info("Adding inventory item to user: {}", email);
+            //Checks the user exist and adds
             AdminUser updatedUser = service.addInventoryItemToUser(email, item);
             return ResponseEntity.ok(updatedUser);
+            //Else throws and error
         } catch (RuntimeException ex) {
             log.error("Error adding inventory item: {}", ex.getMessage());
             return ResponseEntity.badRequest().body("Error adding inventory item: " + ex.getMessage());
+        }
+    }
+    @PostMapping("/{email}/shoppinglist")
+    public ResponseEntity<?> addShoppingList(@PathVariable String email, @RequestBody ShoppingList list) {
+
+        //Add item to the user's inventory
+        try {
+            log.info("Adding inventory item to user: {}", email);
+            //Checks the user exist and adds
+            AdminUser updatedUser = service.addShoppingListToUser(email, list);
+            return ResponseEntity.ok(updatedUser);
+            //Else throws and error
+        } catch (RuntimeException ex) {
+            log.error("Error adding shopping list: {}", ex.getMessage());
+            return ResponseEntity.badRequest().body("Error adding shopping list: " + ex.getMessage());
         }
     }
 
@@ -89,6 +110,16 @@ public class UserController {
         try {
             List<UserInventory> inventoryItems = service.getAllInventoryItems(email);
             return ResponseEntity.ok(inventoryItems);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+        }
+    }
+
+    @GetMapping("/{email}/shoppinglist")
+    public ResponseEntity<?> getAllShoppingList(@PathVariable String email) {
+        try {
+            List<ShoppingList> shoppingList = service.getAllShoppingList(email);
+            return ResponseEntity.ok(shoppingList);
         } catch (RuntimeException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
         }

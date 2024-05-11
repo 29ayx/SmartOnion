@@ -1,7 +1,7 @@
 package com.smartonion.salt.controller;
 
-import com.smartonion.salt.model.Task;
-import com.smartonion.salt.service.TaskService;
+import com.smartonion.salt.model.ShoppingList;
+import com.smartonion.salt.service.ShoppingListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -9,44 +9,44 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tasks")
-public class TaskController {
-
-    @Autowired
-    private TaskService service;
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Task createTask(@RequestBody Task task){
-        return service.addTask(task);
-    }
-
-
-    @GetMapping
-    public List<Task> getTasks(){
-        return service.findAllTasks();
-    }
-
-    @GetMapping("/{taskId}")
-    public Task getTask(@PathVariable String taskId){
-        return service.getTaskByTaskId(taskId);
-    }
-
-
-    @GetMapping("/severity/{severity}")
-    public List<Task> findTasksBySeverity(@PathVariable int severity){
-        return service.getTaskBySeverity(severity);
-    }
-
-    @PutMapping
-    public Task modifyTask(@RequestBody Task task){
-        return service.updateTask(task);
-    }
-
-    @DeleteMapping("/{taskId}")
-    public String deleteTask(@PathVariable String taskId){
-        return service.deleteTask(taskId);
-    }
-
+@RequestMapping("/shoppinglist")
+public class ShoppingListController {
+//
+//    @Autowired
+//    private ShoppingListService service;
+//
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public ShoppingList createTask(@RequestBody ShoppingList shoppingList){
+//        return service.addTask(shoppingList);
+//    }
+//
+//
+//    @GetMapping
+//    public List<ShoppingList> getTasks(){
+//        return service.findAllTasks();
+//    }
+//
+//    @GetMapping("/{taskId}")
+//    public ShoppingList getTask(@PathVariable String taskId){
+//        return service.getTaskByTaskId(taskId);
+//    }
+//
+//
+//    @GetMapping("/severity/{severity}")
+//    public List<ShoppingList> findTasksBySeverity(@PathVariable int severity){
+//        return service.getTaskBySeverity(severity);
+//    }
+//
+//    @PutMapping
+//    public ShoppingList modifyTask(@RequestBody ShoppingList shoppingList){
+//        return service.updateTask(shoppingList);
+//    }
+//
+//    @DeleteMapping("/{taskId}")
+//    public String deleteTask(@PathVariable String taskId){
+//        return service.deleteTask(taskId);
+//    }
+//
 
 }
