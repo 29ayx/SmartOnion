@@ -17,7 +17,7 @@ import java.util.List;
 public class ShoppingList {
 
     @Id
-    private String taskId;
+    private String shoppingListId;
     private String description;
 //    private Date shoppingDate;
     private List<ShoppingItem> shoppingItems;

@@ -81,7 +81,7 @@ public class UserController {
 
 
     //Add item to user's inventory
-    @PostMapping("/{email}/inventoryItems")
+    @PostMapping("/{email}/additem")
     public ResponseEntity<?> addInventoryItemToUser(@PathVariable String email, @RequestBody UserInventory item) {
 
         //Add item to the user's inventory
