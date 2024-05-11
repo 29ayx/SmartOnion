@@ -26,10 +26,10 @@ public class AdminUser {
     private String email;
     private String fullname;
     private String password;
-//    private List<UserInventory> inventoryItems;  // List of inventory items
     private List<UserInventory> inventoryItems = new ArrayList<>();
     private List<ShoppingList> shoppingList = new ArrayList<>();
 
+//    private List<UserInventory> inventoryItems;  // List of inventory items
 //    private List<Fruit> fruits = new ArrayList<>();
 //    private List<Vegetable> vegetables = new ArrayList<>();
 //    private List<Other> others = new ArrayList<>();

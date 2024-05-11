@@ -19,7 +19,7 @@ public class ShoppingList {
     @Id
     private String taskId;
     private String description;
-    private Date shoppingDate;
+//    private Date shoppingDate;
     private List<ShoppingItem> shoppingItems;
 
 

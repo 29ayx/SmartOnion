@@ -43,6 +43,9 @@ public class UserController {
         return service.findAllUsers();
     }
 
+
+
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable String id) {
@@ -54,6 +57,10 @@ public class UserController {
     @GetMapping("/{email}")
     public AdminUser getUser(@PathVariable String email){
         return service.findAdminUserByEmail(email);
+    }
+    @PutMapping("/{id}")
+    public AdminUser updateUser(@RequestBody AdminUser adminuser){
+        return service.updateAdminUser(adminuser);
     }
 
     @PostMapping("/auth/login")
