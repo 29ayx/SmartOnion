@@ -132,5 +132,22 @@ public class UserController {
         }
     }
 
-
+    @GetMapping("/{email}/shoppinglist/{shoppingListId}")
+    public ResponseEntity<?> getShoppingListForUser(@PathVariable String email, @PathVariable String shoppingListId) {
+        try {
+            AdminUser user = service.findAdminUserByEmail(email);
+            if (user == null) {
+                return ResponseEntity.notFound().build();
+            }
+            for (ShoppingList shoppingList : user.getShoppingList()) {
+                String listId = shoppingList.getShoppingListId();
+                if (listId != null && listId.equals(shoppingListId)) {
+                    return ResponseEntity.ok(shoppingList);
+                }
+            }
+            return ResponseEntity.notFound().build();
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+    }
 }
