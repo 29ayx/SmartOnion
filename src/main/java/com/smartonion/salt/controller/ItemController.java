@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Date;
+import java.sql.Date;
 
 @RestController
 @RequestMapping("/items")
@@ -26,10 +26,10 @@ public class ItemController {
         return service.addCatalogItem(item);
     }
 
-    @PostMapping("/inventory")
-    public InventoryItem addInventoryItem(@RequestBody InventoryItemRequest request) {
-        return service.addOrUpdateInventoryItem(request.getItemId(), request.getQuantity(), request.getExpiryDate());
-    }
+//    @PostMapping("/inventory")
+//    public InventoryItem addInventoryItem(@RequestBody InventoryItemRequest request) {
+//        return service.addOrUpdateInventoryItem(request.getItemId(), request.getQuantity());
+//    }
 
 
     @GetMapping("/inventory")
@@ -62,10 +62,10 @@ public class ItemController {
         return service.getItemsByName(name);
     }
 
-    @GetMapping("/expired")
-    public List<Item> getExpiredItems() {
-        return service.getExpiredItems();
-    }
+//    @GetMapping("/expired")
+//    public List<Item> getExpiredItems() {
+//        return service.getExpiredItems();
+//    }
 
     @GetMapping("/low-stock")
     public List<Item> getItemsWithLowStock(@RequestParam(defaultValue = "5") int threshold) {

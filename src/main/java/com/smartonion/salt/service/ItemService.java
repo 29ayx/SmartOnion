@@ -9,7 +9,7 @@ import com.smartonion.salt.model.InventoryItem;
 import com.smartonion.salt.repository.CatalogItemRepository;
 import com.smartonion.salt.repository.InventoryItemRepository;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -39,11 +39,11 @@ public class ItemService {
         if (existingInventory.isPresent()) {
             InventoryItem inventoryItem = existingInventory.get();
             inventoryItem.setQuantity(inventoryItem.getQuantity() + quantity);
-            inventoryItem.setExpiryDate(expiryDate);
+//            inventoryItem.setExpiryDate(expiryDate);
             inventoryItem.setInStock(true);
             return inventoryItemRepository.save(inventoryItem);
         } else {
-            InventoryItem newInventoryItem = new InventoryItem(null, itemId, quantity, expiryDate, true);
+            InventoryItem newInventoryItem = new InventoryItem(null, itemId, quantity, true);
             return inventoryItemRepository.save(newInventoryItem);
         }
     }
@@ -78,10 +78,10 @@ public class ItemService {
     public Item getItemByItemId(String itemId){
         return repository.findById(itemId).orElseThrow(() -> new IllegalArgumentException("Item not found"));
     }
-
-    public List<Item> getExpiredItems() {
-        return repository.findExpiredItems(new Date());
-    }
+//
+//    public List<Item> getExpiredItems() {
+//        return repository.findExpiredItems(new Date());
+//    }
 
     public List<Item> getItemsWithLowStock(int threshold){
         return repository.findItemsWithLowStock(threshold);
@@ -92,7 +92,7 @@ public class ItemService {
         existingItem.setType(itemRequest.getType());
         existingItem.setQuantity(itemRequest.getQuantity());
         existingItem.setUnit(itemRequest.getUnit());
-        existingItem.setExpiryDate(itemRequest.getExpiryDate());
+//        existingItem.setExpiryDate(itemRequest.getExpiryDate());
         existingItem.setInStock(itemRequest.isInStock());
         return repository.save(existingItem);
     }

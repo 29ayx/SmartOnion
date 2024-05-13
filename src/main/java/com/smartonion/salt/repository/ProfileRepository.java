@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ProfileRepository extends MongoRepository<Profile, String> {
     List<Profile> findByName(String name);
+    List<Profile> findByUserEmail(String userEmail);
 
-    List<Profile> findByAllergies_AllergyType(String allergyType);
+//    List<Profile> findByAllergies_AllergyType(String allergyType);
 }

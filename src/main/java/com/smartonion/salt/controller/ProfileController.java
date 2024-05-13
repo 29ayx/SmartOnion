@@ -3,9 +3,11 @@ package com.smartonion.salt.controller;
 import com.smartonion.salt.model.Profile;
 import com.smartonion.salt.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -14,6 +16,16 @@ public class ProfileController {
 
     @Autowired
     private ProfileService profileService;
+
+
+    @GetMapping("/owner/{userEmail}")
+    public ResponseEntity<List<Profile>> getProfilesByUserEmail(@PathVariable String userEmail) {
+        List<Profile> profiles = profileService.getProfilesByUserEmail(userEmail);
+        if (profiles.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ArrayList<>());
+        }
+        return ResponseEntity.ok(profiles);
+    }
 
     @PostMapping
     public ResponseEntity<Profile> createProfile(@RequestBody Profile profile) {
@@ -39,10 +51,14 @@ public class ProfileController {
         return ResponseEntity.ok(updatedProfile);
     }
 
-    @DeleteMapping("/{id}")
+
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteProfile(@PathVariable String id) {
-        profileService.deleteProfile(id);
-        return ResponseEntity.ok("Profile deleted successfully!");
+        if (profileService.deleteProfile(id)) {
+            return ResponseEntity.ok("Profile deleted successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Profile not found");
+        }
     }
 
     @GetMapping("/search/byName")
@@ -51,9 +67,9 @@ public class ProfileController {
         return ResponseEntity.ok(profiles);
     }
 
-    @GetMapping("/filter/byAllergy")
-    public ResponseEntity<List<Profile>> getProfilesByAllergyType(@RequestParam String allergyType) {
-        List<Profile> profiles = profileService.getProfilesByAllergyType(allergyType);
-        return ResponseEntity.ok(profiles);
-    }
+//    @GetMapping("/filter/byAllergy")
+//    public ResponseEntity<List<Profile>> getProfilesByAllergyType(@RequestParam String allergyType) {
+//        List<Profile> profiles = profileService.getProfilesByAllergyType(allergyType);
+//        return ResponseEntity.ok(profiles);
+//    }
 }
