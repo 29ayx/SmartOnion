@@ -1,7 +1,7 @@
-package com.smartonion.salt.controller.Inventory;
+package com.smartonion.salt.controller.inventory;
 
-        import com.smartonion.salt.model.Inventory.Fruit;
-        import com.smartonion.salt.service.Inventory.FruitService;
+        import com.smartonion.salt.model.inventory.Fruit;
+        import com.smartonion.salt.service.inventory.FruitService;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.http.HttpStatus;
         import org.springframework.http.ResponseEntity;

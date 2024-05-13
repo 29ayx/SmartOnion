@@ -1,9 +1,8 @@
-package com.smartonion.salt.model.Inventory;
+package com.smartonion.salt.model.inventory;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data

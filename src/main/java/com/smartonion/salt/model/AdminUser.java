@@ -1,9 +1,6 @@
 package com.smartonion.salt.model;
 
-import com.smartonion.salt.model.Inventory.Fruit;
-import com.smartonion.salt.model.Inventory.Other;
-import com.smartonion.salt.model.Inventory.UserInventory;
-import com.smartonion.salt.model.Inventory.Vegetable;
+import com.smartonion.salt.model.inventory.UserInventory;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;  // Corrected import
 

@@ -1,7 +1,6 @@
-package com.smartonion.salt.model.Inventory;
+package com.smartonion.salt.model.inventory;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;

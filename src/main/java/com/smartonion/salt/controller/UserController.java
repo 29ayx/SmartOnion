@@ -1,5 +1,5 @@
 package com.smartonion.salt.controller;
-import com.smartonion.salt.model.Inventory.UserInventory;
+import com.smartonion.salt.model.inventory.UserInventory;
 import com.smartonion.salt.model.ShoppingList;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
