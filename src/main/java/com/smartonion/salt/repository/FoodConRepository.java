@@ -1,20 +1,15 @@
 package com.smartonion.salt.repository;
 
-import com.smartonion.salt.model.Item;
+import com.smartonion.salt.model.FoodConsumption;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 
-import java.sql.Date;
 import java.util.List;
 
-public interface ItemRepository extends MongoRepository<Item, String> {
+public interface FoodConRepository extends MongoRepository<FoodConsumption, String> {
 
-    List<Item> findByType(String type);  // Use string for type
-    List<Item> findByName(String name);  // New method to find by name
+    List<FoodConsumption> findAllByFamilyId();
 
-//    @Query("{'expiryDate': {$lt: ?0}}")
-//    List<Item> findExpiredItems(Date currentDate);
+    List<FoodConsumption> findAllFoodConsumptionByFamilyId(String email);
 
-    @Query("{'quantity': {$lt: ?0}}")
-    List<Item> findItemsWithLowStock(int threshold);
+    List<FoodConsumption> findAllByProfileId(String profileId);
 }

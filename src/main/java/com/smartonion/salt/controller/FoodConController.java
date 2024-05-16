@@ -1,8 +1,8 @@
 package com.smartonion.salt.controller;
 
 
-import com.smartonion.salt.model.AdminUser;
 import com.smartonion.salt.model.FoodConsumption;
+import com.smartonion.salt.service.FoodConService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/record")
-public class FoodConService {
-
-    @Autowired
-    com.smartonion.salt.service.FoodConService service;
+public class FoodConController {
 
     @GetMapping("/{email}")
-    public ResponseEntity<?> getAllFoodConsumptionByEmail(@PathVariable String email){
+    public ResponseEntity<?> findAllFoodConsumptionByFamilyId(@PathVariable String email){
         try {
             List<FoodConsumption> report = service.findAllFoodConsumptionByFamilyId(email);
             //Checks the user exist and adds
@@ -29,11 +26,26 @@ public class FoodConService {
         }
     }
 
+    @GetMapping("/profile/{profileId}")
+    public ResponseEntity<?> getAllFoodConsumptionByProfileId(@PathVariable String profileId){
+        try {
+            List<FoodConsumption> report = service.findAllFoodConsumptionByPofileId(profileId);
+            //Checks the user exist and adds
+            return ResponseEntity.ok(report);
+            //Else throws and error
+        } catch (RuntimeException ex) {
+            return ResponseEntity.badRequest().body("Error finding food consumption: " + ex.getMessage());
+        }
+    }
+
+    @Autowired
+    FoodConService service;
+
 
     @PostMapping("/{email}/{profileId}")
     public ResponseEntity<?> addFoodConsumption(@PathVariable  String email, @PathVariable String profileId, @RequestBody FoodConsumption foodConsumption){
             service.addFoodConsumption(email, profileId, foodConsumption);
-            return ResponseEntity.ok("Food consumption added successfully");
+            return ResponseEntity.ok(service.addFoodConsumption(email, profileId, foodConsumption));
     }
 
 

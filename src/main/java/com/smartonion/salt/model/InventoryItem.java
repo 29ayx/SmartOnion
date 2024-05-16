@@ -17,6 +17,8 @@ public class InventoryItem {
     private String inventoryId; // Unique ID for each inventory entry
     private String itemId; // Reference to the CatalogItem ID
     private float quantity;
-//    private Date expiryDate;
+    private boolean isCrucial;
+    private float lowQuanityAlarm;
+    private Date expiryDate;
     private boolean inStock;
 }

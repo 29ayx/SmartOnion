@@ -23,6 +23,7 @@ public class Profile {
     private Date dob;
     private String name;
 //    private FoodPreference foodPreference;
-//    private Allergies allergies;
+    private Allergies allergies;
+
 
 }

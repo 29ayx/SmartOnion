@@ -52,6 +52,7 @@ public class ProfileController {
     }
 
 
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteProfile(@PathVariable String id) {
         if (profileService.deleteProfile(id)) {

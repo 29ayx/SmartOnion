@@ -21,6 +21,7 @@ public class Item {
     private float quantity;
     private String unit;  // Changed from enum to String
 //    private Date expiryDate;
+
     private boolean inStock;
     private String familyId;
 

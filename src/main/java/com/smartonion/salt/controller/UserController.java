@@ -116,9 +116,15 @@ public class UserController {
     public ResponseEntity<?> getAllInventoryItems(@PathVariable String email) {
         try {
             List<UserInventory> inventoryItems = service.getAllInventoryItems(email);
+            if(inventoryItems.isEmpty()){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No items available in fridge.");
+            }
+            else{
+
             return ResponseEntity.ok(inventoryItems);
+            }
         } catch (RuntimeException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No items available in fridge.");
         }
     }
 
@@ -145,6 +151,20 @@ public class UserController {
                     return ResponseEntity.ok(shoppingList);
                 }
             }
+            return ResponseEntity.notFound().build();
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());
+        }
+    }
+
+    @PutMapping("/{email}/shoppinglist/{shoppingListId}")
+    public ResponseEntity<?> updateShoppingListForUser(@PathVariable String email, @RequestBody String shoppingListId) {
+        try {
+            AdminUser user = service.findAdminUserByEmail(email);
+            if (user == null) {
+                return ResponseEntity.notFound().build();
+            }
+
             return ResponseEntity.notFound().build();
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getMessage());

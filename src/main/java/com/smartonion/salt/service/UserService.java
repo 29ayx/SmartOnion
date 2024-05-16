@@ -68,12 +68,7 @@ public class UserService {
     }
 
 
-    //BACH
-//    public ShoppingList getShoppingListById(String userId) {
-//        AdminUser user = repository.findByEmail(userId)
-//                .orElseThrow(() -> new RuntimeException("User not found"));
-//        return user.getShoppingListById();  // Return the list of inventory items
-//    }
+
 
     public AdminUser addInventoryItemToUser(String userEmail, UserInventory item) {
         AdminUser user = repository.findByEmail(userEmail)
