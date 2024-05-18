@@ -17,7 +17,8 @@ import lombok.EqualsAndHashCode;
 @Document(collection = "user_inventory")
 public class UserInventory extends InventoryItem {
     private boolean crucial;
-    private String type;
+//    private String type;
+    private float notifyBefore;
     @DBRef
     @JsonIgnore
     private AdminUser adminUser;  // Link to the admin user

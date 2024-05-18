@@ -19,11 +19,11 @@ public class Profile {
 
     @Id
     private String profileId;
-    private String userEmail;  // Reference to AdminUser by email
+    private String userEmail;
     private Date dob;
     private String name;
-//    private FoodPreference foodPreference;
-    private Allergies allergies;
+    private int dietgoal;
+    private String allergies;
 
 
 }

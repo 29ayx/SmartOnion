@@ -1,5 +1,6 @@
 package com.smartonion.salt.model;
 
+import com.smartonion.salt.model.inventory.InventoryItem;
 import com.smartonion.salt.model.inventory.UserInventory;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;  // Corrected import
@@ -26,10 +27,11 @@ public class AdminUser {
     private List<UserInventory> inventoryItems = new ArrayList<>();
     private List<ShoppingList> shoppingList = new ArrayList<>();
 
-//    private List<UserInventory> inventoryItems;  // List of inventory items
-//    private List<Fruit> fruits = new ArrayList<>();
-//    private List<Vegetable> vegetables = new ArrayList<>();
-//    private List<Other> others = new ArrayList<>();
 
-
+    public UserInventory getInventoryItemsById(String itemId) {
+        return inventoryItems.stream()
+                .filter(inventoryItem -> itemId.equals(inventoryItem.getItemId()))
+                .findFirst()
+                .orElse(null);
+    }
 }

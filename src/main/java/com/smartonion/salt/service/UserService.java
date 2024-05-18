@@ -2,19 +2,20 @@ package com.smartonion.salt.service;
 
 
 import java.util.List;
+import java.util.UUID;
 
 import com.smartonion.salt.model.inventory.*;
 import com.smartonion.salt.model.ShoppingList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.smartonion.salt.model.AdminUser;
-import com.smartonion.salt.repository.UserRepository;
+import com.smartonion.salt.repository.AdminUserRepository;
 
 @Service
 public class UserService {
 
     @Autowired
-    private UserRepository repository;
+    private AdminUserRepository repository;
 
 
     public AdminUser addUser(AdminUser user) {
@@ -70,11 +71,13 @@ public class UserService {
 
 
 
+
     public AdminUser addInventoryItemToUser(String userEmail, UserInventory item) {
         AdminUser user = repository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("User not found")); // Now properly functional
 
         item.setAdminUser(user); // Assuming UserInventory has a back-reference to AdminUser
+        item.setItemId(UUID.randomUUID().toString().split("-")[0]);
         user.getInventoryItems().add(item);
         return repository.save(user); // Saves the updated user with the new inventory item
     }

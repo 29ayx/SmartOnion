@@ -1,7 +1,12 @@
 package com.smartonion.salt.service;
 
+import com.smartonion.salt.model.AdminUser;
+import com.smartonion.salt.model.FoodConsumption;
 import com.smartonion.salt.model.Item;
 import com.smartonion.salt.model.Profile;
+import com.smartonion.salt.model.inventory.UserInventory;
+import com.smartonion.salt.repository.AdminUserRepository;
+import com.smartonion.salt.repository.FoodConsumptionRepository;
 import com.smartonion.salt.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +20,10 @@ public class ProfileService {
 
     @Autowired
     private ProfileRepository profileRepository;
+
+
+    @Autowired
+    private FoodConsumptionRepository foodConsumptionRepository;
 
 
 
@@ -36,6 +45,9 @@ public class ProfileService {
     public Profile updateProfile(String id, Profile updatedProfile) {
         Profile profile = getProfileById(id);
         profile.setName(updatedProfile.getName());
+        profile.setDob(updatedProfile.getDob());
+        profile.setDietgoal(updatedProfile.getDietgoal());
+        profile.setAllergies(updatedProfile.getAllergies());
 //        profile.setFoodPreference(updatedProfile.getFoodPreference());
 //        profile.setAllergies(updatedProfile.getAllergies());
         return profileRepository.save(profile);
@@ -63,7 +75,50 @@ public class ProfileService {
         return profileRepository.findByUserEmail(userEmail);
     }
 
-//    public List<Profile> getProfilesByAllergyType(String allergyType) {
-//        return profileRepository.findByAllergies_AllergyType(allergyType);
-//    }
+
+@Autowired
+    AdminUserRepository adminUserRepository;
+
+    // Consume an item by profile ID and log the consumption
+    public Optional<UserInventory> consumeItemByProfileId(String profileId, String itemId, float quantity) {
+        Optional<Profile> profile = profileRepository.findById(profileId);
+        if (profile.isPresent()) {
+            Profile existingProfile = profile.get();
+            String  userEmail = existingProfile.getUserEmail();
+            Optional<AdminUser> adminUser = adminUserRepository.findByEmail(userEmail);
+            if (adminUser.isPresent()) {
+                List<UserInventory> items = adminUser.get().getInventoryItems();
+                Optional<UserInventory> inventoryItem = items.stream()
+                        .filter(item -> itemId.equals(item.getItemId()))
+                        .findFirst();
+
+                if (inventoryItem.isPresent()) {
+                    UserInventory item = inventoryItem.get();
+                    float newQuantity = Float.parseFloat(item.getQuantity()) - quantity;
+                    if (newQuantity < 0) {
+                        return Optional.empty();
+                    }
+                    item.setQuantity(String.valueOf(newQuantity));
+
+                    // Log the consumption
+                    FoodConsumption foodConsumption = new FoodConsumption(
+                            adminUser.get().getId(),
+                            profileId,
+                            item.getName(),
+                            quantity,
+                            Float.parseFloat(item.getCalories()) * quantity
+                    );
+                    foodConsumptionRepository.save(foodConsumption);
+
+                    adminUserRepository.save(adminUser.get());
+                    return Optional.of(item);
+                }
+            }
+        }
+        return Optional.empty();
+    }
+
 }
+
+
+
