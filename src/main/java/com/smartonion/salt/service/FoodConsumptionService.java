@@ -3,9 +3,9 @@ package com.smartonion.salt.service;
 import com.smartonion.salt.model.AdminUser;
 import com.smartonion.salt.model.FoodConsumption;
 import com.smartonion.salt.model.Profile;
-import com.smartonion.salt.repository.FoodConRepository;
+import com.smartonion.salt.repository.FoodConsumptionRepository;
 import com.smartonion.salt.repository.ProfileRepository;
-import com.smartonion.salt.repository.UserRepository;
+import com.smartonion.salt.repository.AdminUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +16,12 @@ import java.util.Optional;
 public class FoodConService {
 
     @Autowired
-    FoodConRepository repository;
+    FoodConsumptionRepository repository;
 
     @Autowired
     ProfileRepository profile;
     @Autowired
-    UserRepository user;
+    AdminUserRepository user;
 
     public List<FoodConsumption> findAllFoodConsumptionByFamilyId(String email) {
 

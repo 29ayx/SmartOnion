@@ -2,7 +2,7 @@ package com.smartonion.salt.controller;
 
 
 import com.smartonion.salt.model.FoodConsumption;
-import com.smartonion.salt.service.FoodConService;
+import com.smartonion.salt.service.FoodConsumptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +39,7 @@ public class FoodConController {
     }
 
     @Autowired
-    FoodConService service;
+    FoodConsumptionService service;
 
 
     @PostMapping("/{email}/{profileId}")
