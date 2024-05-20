@@ -14,7 +14,6 @@ To start the application, follow these steps:
 2. **Checkout to the `wokingshoppinglist` branch:**
     ```sh
     cd SmartOnion
-    git checkout wokingshoppinglist
     ```
 
 3. **Build the project using Maven:**
