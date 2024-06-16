@@ -1,4 +1,4 @@
-# SmartOnion - Main Frontend : https://github.com/29ayx/SmartOnion---Front-End
+## Main Frontend : https://github.com/29ayx/SmartOnion---Front-End
 
 ![image](https://github.com/29ayx/SmartOnion/assets/63330200/e58a3f8b-0b8a-4bdd-9674-dd3f39e8c09d)
 ![image](https://github.com/29ayx/SmartOnion/assets/63330200/af91e79a-dd69-42be-a2bf-72d9b2c1a3d7)
@@ -40,5 +40,6 @@ To start the application, follow these steps:
 Once the application is running, you can access it by navigating to:
 
 - **Swagger UI for API endpoints:** [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+## Main Frontend : https://github.com/29ayx/SmartOnion---Front-End
 
 
