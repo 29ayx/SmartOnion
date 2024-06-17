@@ -1,6 +1,6 @@
 ## Main Frontend : https://github.com/29ayx/SmartOnion---Front-End
 
-![image](https://github.com/29ayx/SmartOnion/assets/63330200/e58a3f8b-0b8a-4bdd-9674-dd3f39e8c09d)
+![smartOnion](https://github.com/29ayx/SmartOnion/assets/63330200/8763b28a-2dbc-4495-b935-197f531e14d6)
 ![image](https://github.com/29ayx/SmartOnion/assets/63330200/af91e79a-dd69-42be-a2bf-72d9b2c1a3d7)
 ![image](https://github.com/29ayx/SmartOnion/assets/63330200/7199f6f0-5770-4a2b-9ce7-8441b508f2ad)
 
