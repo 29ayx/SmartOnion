@@ -80,6 +80,8 @@ public class ItemController {
     @DeleteMapping("/{itemId}")
     public String deleteItem(@PathVariable String itemId) {
         return service.deleteItem(itemId);
+
+        ;;
     }
 
 //    public List<Item> getItemsByType(@PathVariable Item.ItemType type) {
