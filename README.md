@@ -1,7 +1,7 @@
-##Overview:
+## Overview:
 SmartOnion is an innovative food inventory management system designed to integrate seamlessly with smart refrigerators. It helps users track, plan, and optimize their food consumption, promoting efficiency, reducing waste, and improving nutrition awareness. Built with Java and Swing as part of a collaborative university project, it demonstrates a practical, scalable, and modular approach to software design.
 
-##Impact:
+## Impact:
 
 Practical Efficiency: Streamlines the management of perishable items, enabling users to reduce food waste and save costs.
 
